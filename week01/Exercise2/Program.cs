@@ -9,29 +9,40 @@ class Program
         string number = Console.ReadLine();
         int percent = int.Parse(number);
 // Grade sorting below
-        string Grade = "";
+        string letter = "";
 
         if (percent >= 90)
         {
-            Grade = "A";
+            letter = "A";
         }
         else if (percent >= 80)
         {
-            Grade = "B";
+            letter = "B";
         }
         else if (percent >= 70)
         {
-            Grade = "C";
+            letter = "C";
         }
         else if (percent >= 60)
         {
-            Grade = "D";
+            letter = "D";
         }
-        else if (percent <= 59)
+        else if (percent < 60)
         {
-            Grade = "F";
+            letter = "F";
         }
-//end of grade sording
 
+//end of grade sording
+// Grade reporting
+        Console.WriteLine($"Your grade is: {letter}");
+
+        if (percent > 69)
+        {
+            Console.WriteLine("Congradulations you didn't fail!");
+        }
+        else
+        {
+            Console.WriteLine("Unfortunatly you did not pass. Try again?");
+        }
     }
 }
