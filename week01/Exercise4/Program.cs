@@ -19,5 +19,13 @@ class Program
                 numbers.Add(numberinput);
             }
         } while (numberinput != 0);
+
+        //now for step 2 
+          int sum = 0;
+        foreach (int number in numbers)
+        {
+            sum += number;
+        }
+        Console.WriteLine($"The sum is: {sum}");
     }
 }
