@@ -26,4 +26,19 @@ class Program
     {
         return number * number;
     }
+    //fun 5 results
+    static void DisplayResult(string name, int squaredNumber)
+    {
+        Console.WriteLine($"{name}, the square of your number is {squaredNumber}");
+    }
+    //all back together with main 
+      static void Main(string[] args)
+    {
+        DisplayWelcome();
+
+        string userName = PromptUserName();
+        int userNumber = PromptUserNumber();
+        int squared = SquareNumber(userNumber);
+        DisplayResult(userName, squared);
+    }
 }
