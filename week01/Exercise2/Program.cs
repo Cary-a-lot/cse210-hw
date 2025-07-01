@@ -9,5 +9,12 @@ class Program
         string number = Console.ReadLine();
         int percent = int.Parse(number);
 
+        string Grade = "";
+
+        if (percent >= 90)
+        {
+            Grade = "A";
+        }
+
     }
 }
