@@ -34,5 +34,14 @@ class Program
                     string privacyInput = Console.ReadLine().ToLower();
                     bool isPrivate = privacyInput == "yes" || privacyInput == "y";
                     string password = "";
+
+                                        if (isPrivate)
+                    {
+                        Console.Write("Enter a password for this entry: ");
+                        password = Console.ReadLine();
+                    }
+                    string entryDate = DateTime.Now.ToShortDateString();
+                    journal.AddEntry(new Entry(entryDate, prompt, response, isPrivate, password));
+                    break;
     }
 }
