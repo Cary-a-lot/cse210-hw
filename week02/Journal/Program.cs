@@ -28,20 +28,46 @@ class Program
                     Console.WriteLine($"\nPrompt: {prompt}");
                     Console.Write("Your response: ");
                     string response = Console.ReadLine();
-
-
                     Console.Write("Make this entry private? (yes/no): ");
                     string privacyInput = Console.ReadLine().ToLower();
                     bool isPrivate = privacyInput == "yes" || privacyInput == "y";
                     string password = "";
-
-                                        if (isPrivate)
-                    {
+                if (isPrivate)
+                {
                         Console.Write("Enter a password for this entry: ");
                         password = Console.ReadLine();
-                    }
+                }
                     string entryDate = DateTime.Now.ToShortDateString();
+    
                     journal.AddEntry(new Entry(entryDate, prompt, response, isPrivate, password));
                     break;
+               
+
+                     
+                case "2":
+                    journal.DisplayEntries();
+                    break;
+
+                case "3":
+                    Console.Write("Enter filename to save to: ");
+                    string saveFileName = Console.ReadLine();
+                    journal.SaveToFile(saveFileName);
+                    break;
+
+                case "4":
+                    Console.Write("Enter filename to load from: ");
+                    string loadFileName = Console.ReadLine();
+                    journal.LoadFromFile(loadFileName);
+                    break;
+
+                case "5":
+                    isRunning = false;
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid option. Try again.");
+                    break;
+            }
+        }
     }
 }
