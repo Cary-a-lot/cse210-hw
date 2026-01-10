@@ -11,7 +11,28 @@ class Program
         string grade = Console.ReadLine();
         int x = int.Parse(grade);
 
-        Console.WriteLine(grade);
+        if (x > 89)
+        {
+            Console.WriteLine("You scored above 89 thats an A! ");
+        }
+        else if (x > 79)
+        {
+            Console.WriteLine("You scored above a 79. That is a B.");
+        }
+        else if (x > 69)
+        {
+            Console.WriteLine("You managed to get above 69% That's a C...");
+        }
+        else if (x > 59)
+        {
+            Console.WriteLine("You got above the low bar of 59% That is still just a D");
+        }
+        else if (x < 60)
+        {
+            Console.WriteLine("You should have studied more, below 60% is a F");
+        }
+
+        //Console.WriteLine(grade);
 
     }
 }
