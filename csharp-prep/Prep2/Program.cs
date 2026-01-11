@@ -31,6 +31,15 @@ class Program
         {
             Console.WriteLine("You should have studied more, below 60% is a F");
         }
+//part 2 instruction
+        if (x > 69)
+        {
+            Console.WriteLine("You passed the test! Good job");
+        }
+        else if (x < 70)
+        {
+            Console.WriteLine("You failed the course... Better luck with study next time.");
+        }
 
         //Console.WriteLine(grade);
 
