@@ -10,26 +10,28 @@ class Program
         Console.Write("What is your grade percentage? ");
         string grade = Console.ReadLine();
         int x = int.Parse(grade);
+// part 3 letter
+        string letter = "";
 
-        if (x > 89)
+         if (x > 89)
         {
-            Console.WriteLine("You scored above 89 thats an A! ");
+            letter = "A";
         }
         else if (x > 79)
         {
-            Console.WriteLine("You scored above a 79. That is a B.");
+            letter = "B";
         }
         else if (x > 69)
         {
-            Console.WriteLine("You managed to get above 69% That's a C...");
+            letter = "C";
         }
         else if (x > 59)
         {
-            Console.WriteLine("You got above the low bar of 59% That is still just a D");
+            letter = "D";
         }
         else if (x < 60)
         {
-            Console.WriteLine("You should have studied more, below 60% is a F");
+            letter = "F";
         }
 //part 2 instruction
         if (x > 69)
@@ -41,7 +43,7 @@ class Program
             Console.WriteLine("You failed the course... Better luck with study next time.");
         }
 
-        //Console.WriteLine(grade);
+        Console.WriteLine($"Your letter grade is {letter}" );
 
     }
 }
