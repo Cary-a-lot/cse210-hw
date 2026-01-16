@@ -10,7 +10,25 @@ class Program
     {
         Console.Write("What is the magic number? ");
         string magicNumber = Console.ReadLine();
+        Console.Write("What is your guess? ");
+        string guess = Console.ReadLine();
+        int x = int.Parse(magicNumber);
+        int y = int.Parse(guess);
+        
+        if (x == y)
+        {
+           Console.WriteLine($"Your guess of {x} is correct!"); 
+        }
 
-        Console.WriteLine(magicNumber);
+        else if (x > y)
+        {
+            Console.WriteLine($"Your guess of {x} is too low.");
+        }
+
+        else if (x < y)
+        {
+            Console.WriteLine($"Your guess of {x} is too high.");
+        }
+        //Console.WriteLine(magicNumber);
     }
 }
