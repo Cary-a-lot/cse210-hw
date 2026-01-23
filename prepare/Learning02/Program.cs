@@ -10,6 +10,11 @@ class Program
         job._startYear = 2020;
         job._endYear = 2023;
 
+        Resume myResume = new Resume();
+        myResume._name = "Your Name";
+
+        myResume._jobs.Add(job);
+
         job.Display();
     }
 }
