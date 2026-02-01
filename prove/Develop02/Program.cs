@@ -20,6 +20,41 @@ class Program
             Console.Write("Choose an option: ");
 
             string choice = Console.ReadLine();
+                        switch (choice)
+            {
+                case "1":
+                    string prompt = promptGenerator.GetRandomPrompt();
+                    Console.WriteLine(prompt);
+                    Console.Write("> ");
+                    string response = Console.ReadLine();
+
+                    string date = DateTime.Now.ToShortDateString();
+                    Entry entry = new Entry(date, prompt, response);
+                    journal.AddEntry(entry);
+                    break;
+
+                case "2":
+                    journal.DisplayAll();
+                    break;
+
+                case "3":
+                    Console.Write("Enter filename to save: ");
+                    journal.SaveToFile(Console.ReadLine());
+                    break;
+
+                case "4":
+                    Console.Write("Enter filename to load: ");
+                    journal.LoadFromFile(Console.ReadLine());
+                    break;
+
+                case "5":
+                    running = false;
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid choice.");
+                    break;
+            }
         }
     }
 }
