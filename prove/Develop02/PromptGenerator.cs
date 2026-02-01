@@ -17,5 +17,13 @@ class PromptGenerator
         "How do you feel you have been doing mentally recently?",
         "What creative ideas have you had today?",
         "Has any of your favorites changed?"
+    };
+
+    private Random _random = new Random();
+
+    public string GetRandomPrompt()
+    {
+        int index = _random.Next(_prompts.Count);
+        return _prompts[index];
     }
 }
