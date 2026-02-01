@@ -1,9 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 class Journal
 {
-    static void Main(string[] args)
+    private List<Entry> _entries = new List<Entry>();
+
+    public void AddEntry(Entry entry)
     {
-        
+        _entries.Add(entry);
     }
 }
