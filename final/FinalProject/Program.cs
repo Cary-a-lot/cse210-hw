@@ -1,38 +1,33 @@
 using System;
-using System.Collections.Generic;
 
 public class Program
 {
     public static void Main()
     {
-        TaskManager manager = new TaskManager();
+        StorageManager storage = new StorageManager();
+        User user = storage.LoadData();
+
+        UIManager ui = new UIManager();
+        TaskManager taskManager = new TaskManager();
+        ReminderService reminder = new ReminderService();
+
         bool running = true;
         int nextId = 1;
 
-        Console.WriteLine("Welcome to Task Manager!");
-
         while (running)
         {
-            Console.WriteLine("\n--- MENU ---");
-            Console.WriteLine("1. List Tasks");
-            Console.WriteLine("2. Add Task");
-            Console.WriteLine("3. Complete Task");
-            Console.WriteLine("4. Remove Task");
-            Console.WriteLine("5. Exit");
-            Console.Write("Choose: ");
+            ui.DisplayMenu();
+            string choice = ui.GetUserInput();
 
-            string input = Console.ReadLine();
-
-            if (input == "1")
+            if (choice == "1")
             {
-                List<Task> tasks = manager.GetAllTasks();
-
-                foreach (Task t in tasks)
-                {
-                    Console.WriteLine($"{t.GetId()}. {t.GetTitle()} - {t.GetStatus()}");
-                }
+                ui.ShowTasks(taskManager.GetAllTasks());
             }
-            else if (input == "2")
+            else if (choice == "2")
+            {
+                ui.ShowHabits(user.GetHabits());
+            }
+            else if (choice == "3")
             {
                 Console.Write("Title: ");
                 string title = Console.ReadLine();
@@ -40,48 +35,47 @@ public class Program
                 Console.Write("Description: ");
                 string desc = Console.ReadLine();
 
-                Console.WriteLine("Type: 1 = One-time, 2 = Recurring");
+                Console.Write("1 = One-time, 2 = Recurring: ");
                 string type = Console.ReadLine();
 
                 if (type == "1")
                 {
-                    Console.Write("Due date (yyyy-mm-dd): ");
-                    DateTime due = DateTime.Parse(Console.ReadLine());
-
-                    manager.AddTask(new OneTimeTask(nextId++, title, desc, due));
+                    DateTime due = DateTime.Now.AddDays(1);
+                    taskManager.AddTask(new OneTimeTask(nextId++, title, desc, due));
                 }
                 else
                 {
                     Console.Write("Frequency: ");
                     string freq = Console.ReadLine();
-
-                    manager.AddTask(new RecurringTask(nextId++, title, desc, freq));
+                    taskManager.AddTask(new RecurringTask(nextId++, title, desc, freq));
                 }
             }
-            else if (input == "3")
+            else if (choice == "4")
             {
-                Console.Write("Enter task ID to complete: ");
-                int id = int.Parse(Console.ReadLine());
-
-                manager.MarkTaskComplete(id);
+                Console.Write("Habit name: ");
+                string name = Console.ReadLine();
+                user.AddHabit(new Habit(name));
             }
-            else if (input == "4")
+            else if (choice == "5")
             {
-                Console.Write("Enter task ID to remove: ");
+                Console.Write("Task ID: ");
                 int id = int.Parse(Console.ReadLine());
-
-                manager.RemoveTask(id);
+                taskManager.MarkTaskComplete(id);
             }
-            else if (input == "5")
+            else if (choice == "6")
             {
+                foreach (Habit h in user.GetHabits())
+                {
+                    h.MarkComplete();
+                }
+            }
+            else if (choice == "7")
+            {
+                storage.SaveData(user);
                 running = false;
             }
-            else
-            {
-                Console.WriteLine("Invalid option.");
-            }
-        }
 
-        Console.WriteLine("Goodbye!");
+            reminder.CheckDueTasks(taskManager.GetAllTasks());
+        }
     }
 }
