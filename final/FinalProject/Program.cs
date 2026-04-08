@@ -74,6 +74,12 @@ public class Program
                 storage.SaveData(user);
                 running = false;
             }
+            else if (choice == "8")
+            {
+                Console.Write("Enter task ID to remove: ");
+                int id = int.Parse(Console.ReadLine());
+                taskManager.RemoveTask(id);
+            }
 
             reminder.CheckDueTasks(taskManager.GetAllTasks());
         }
